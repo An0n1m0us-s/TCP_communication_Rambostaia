@@ -1,6 +1,9 @@
 package MC_Server;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.BindException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -25,14 +28,21 @@ public class Server {
         }
     }
 
-    public Socket attendi(){
-        try {
-            clientSocket  = serverSocket.accept();
-            System.out.println("Server ha accettato");
-        } catch (IOException e) {
-            System.err.println("OyBho");
-        }finally {
-            return clientSocket;
+    int connessioni=0;
+
+    public Socket attendi () {
+        while (true){
+            try {
+                clientSocket = serverSocket.accept();
+                System.out.println("Server ha accettato");
+            } catch (IOException e) {
+                System.err.println("OyBho");
+            } finally {
+                connessioni++;
+                if (connessioni==5) {
+                    return clientSocket;
+                }
+            }
         }
     }
 
@@ -41,7 +51,14 @@ public class Server {
     }
 
     public void leggi(){
-
+        try {
+            InputStream inputStream = clientSocket.getInputStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
+            String testo = br.readLine();
+            System.out.println("CLIENT: "+testo);
+        } catch (IOException e) {
+            System.err.println("Non riesco a leggere il messaggio");
+        }
     }
 
     public void chiudi(){

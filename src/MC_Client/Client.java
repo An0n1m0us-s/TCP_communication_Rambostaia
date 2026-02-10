@@ -1,6 +1,6 @@
 package MC_Client;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 
 public class Client {
@@ -25,5 +25,18 @@ public class Client {
     public Client(String nome, String colore){
 
     }
+
+    public void scrivi(){
+        try {
+            OutputStream outputStream = socket.getOutputStream();
+            PrintWriter printWriter = new PrintWriter(outputStream);
+            String messaggino;
+            printWriter.print("ciao");
+            printWriter.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }
