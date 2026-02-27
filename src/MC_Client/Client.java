@@ -36,7 +36,7 @@ public class Client {
             printWriter.print(messaggio+"\n");
             printWriter.flush();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         System.out.println("TU (Client): "+messaggio);
     }
@@ -54,5 +54,13 @@ public class Client {
         }
     }
 
+    public void chiudi(){
+        try {
+            socket.close();
+            System.out.println("Connesione chiusa");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

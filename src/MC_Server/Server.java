@@ -28,13 +28,13 @@ public class Server {
     int connessioni=0;
 
     public Socket attendi () {
-        try {
-            clientSocket = serverSocket.accept();
-            System.out.println("Server ha accettato");
-        } catch (IOException e) {
-            System.err.println("OyBho");
-        }
-        return clientSocket;
+            try {
+                clientSocket = serverSocket.accept();
+                System.out.println("Server ha accettato");
+            } catch (IOException e) {
+                System.err.println("OyBho");
+            }
+            return clientSocket;
     }
 
     String messaggio;
@@ -48,6 +48,7 @@ public class Server {
             printWriter.flush();
         }catch (IOException e){
             System.err.println("Non leggo il messaggio");
+            e.printStackTrace();
         }
         System.out.println("TU (Server): "+messaggio);
     }
