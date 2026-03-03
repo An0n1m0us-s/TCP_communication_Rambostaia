@@ -14,5 +14,7 @@ public class ThreadClientSocket implements Runnable {
         this.clientList = clientList;
         in = new BufferedReader(new InputStreamReader(client.getInputStream()));
     }
-    public void run(){}
+    public void run(){
+
+    }
 }

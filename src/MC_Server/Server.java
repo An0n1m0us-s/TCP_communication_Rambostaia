@@ -32,6 +32,7 @@ public class Server {
                 clientSocket = serverSocket.accept();
                 System.out.println("Server ha accettato");
             } catch (IOException e) {
+                e.printStackTrace();
                 System.err.println("OyBho");
             }
             return clientSocket;

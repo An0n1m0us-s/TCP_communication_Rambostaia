@@ -5,10 +5,12 @@ public class MainClient {
         Client client = new Client("BRIAN");
         client.connetti("localhost", 25565);
         while (true) {
-
             client.scrivi();
-            client.leggi();
+            String msgServer = client.leggi();
+            if (msgServer.equalsIgnoreCase("basta")) {
+                break;
+            }
         }
-         //   client.chiudi();
+        client.chiudi();
     }
 }

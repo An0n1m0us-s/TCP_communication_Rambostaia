@@ -17,6 +17,7 @@ public class Client {
             socket = new Socket(nomeServer, portaServer);
             System.out.println("Client " +nome+ ": client connesso");
         } catch (IOException e) {
+            e.printStackTrace();
             System.err.println("OiBho");
         }
         return 1;
